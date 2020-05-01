@@ -37,6 +37,7 @@ class Master extends Controller
         if(!empty($cnf))
         {
             unset($input->action);
+            unset($input->params->projectId);
             $data = new stdClass();
             $data->find = $input->params;
             $data->cnf = $cnf;

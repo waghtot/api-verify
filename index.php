@@ -5,4 +5,4 @@ require_once('vendor/autoload.php');
 
 new ScurityCheck();
 new Master();
-// echo json_encode(new Master());
+ob_flush();

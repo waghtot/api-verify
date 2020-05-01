@@ -32,8 +32,8 @@ class API_model extends Controller
         $data->api = 'database';
         $data->connection = 'CORE';
         $data->procedure = __FUNCTION__;
-        $data->param->action = $input->action;
-        $data->param->projectId = $input->projectId;
+        $data->params->action = $input->action;
+        $data->params->projectId = $input->projectId;
         $res = self::doApi($data);
         return $res;
 
