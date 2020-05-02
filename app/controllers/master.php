@@ -25,6 +25,12 @@ class Master extends Controller
                     case 'Login':
                         $data->config = $this->configLogin($data);
                         echo json_encode($this->validateInput($data->config));
+                        die;
+                    break;
+                    case 'User':
+                        $res = $this->checkUser($data);
+                        echo json_encode($res);
+                        die;
                     break;
                 }
             }
@@ -49,9 +55,10 @@ class Master extends Controller
 
     private function validateInput($input)
     {
+
         $valid = new Validation();
         $res = $valid->index($input);
-        error_log('validateInput($input): '.print_r($res, 1));
+
         if(!empty($res))
         {
             return $res;
@@ -59,6 +66,21 @@ class Master extends Controller
             return false;
         }
     
+    }
+
+    private function checkUser($input)
+    {
+
+        $user = new CheckUser();
+        $res = $user->index($input);
+
+        if(!empty($res))
+        {
+            return $res;
+        }else{
+            return false;
+        }
+ 
     }
 
 }
