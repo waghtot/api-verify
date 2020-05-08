@@ -22,6 +22,11 @@ class Master extends Controller
             {
                 switch($data->action)
                 {
+                    case 'Register':
+                        $data->config = $this->configLogin($data);
+                        echo json_encode($this->validateInput($data->config));
+                        die;
+                    break;
                     case 'Login':
                         $data->config = $this->configLogin($data);
                         echo json_encode($this->validateInput($data->config));
@@ -47,9 +52,9 @@ class Master extends Controller
             $data = new stdClass();
             $data->find = $input->params;
             $data->cnf = $cnf;
+
             return $data;
         }
-
         return false;
     }
 
