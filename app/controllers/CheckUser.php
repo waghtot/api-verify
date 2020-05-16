@@ -15,7 +15,7 @@ class CheckUser extends Controller
         $data->procedure = __FUNCTION__;
         $data->params->email = $input->email;
         $data->params->projectId = $input->projectId;
-        $res = json_decode(API_model::doAPI($data));
+        $res = json_decode(ApiModel::doAPI($data));
         return $res[0];
 
     }

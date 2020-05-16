@@ -14,7 +14,7 @@ class ConfigurationCheck extends Controller
         $data = new stdClass();
         $data->action = $input->action;
         $data->projectId = $input->params->projectId;
-        $res = API_model::getConfigByAction($data);
+        $res = ApiModel::getConfigByAction($data);
         return $res;
     }
 

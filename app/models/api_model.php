@@ -1,5 +1,5 @@
 <?php
-class API_model extends Controller
+class ApiModel extends Controller
 {
     public function doAPI($data)
     {
