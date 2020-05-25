@@ -23,12 +23,12 @@ class Master extends Controller
                 switch($data->action)
                 {
                     case 'Register':
-                        $data->config = $this->configLogin($data);
+                        $data->config = $this->configCheck($data);
                         echo json_encode($this->validateInput($data->config));
                         die;
                     break;
                     case 'Login':
-                        $data->config = $this->configLogin($data);
+                        $data->config = $this->configCheck($data);
                         echo json_encode($this->validateInput($data->config));
                         die;
                     break;
@@ -37,22 +37,39 @@ class Master extends Controller
                         echo json_encode($res);
                         die;
                     break;
+                    case 'Profile':
+                        $data->config = $this->configCheck($data);
+                        echo json_encode($this->validateInput($data->config));
+                        die;
+                    break;
+                    case 'Person':
+                        $data->config = $this->configCheck($data);
+                        echo json_encode($this->validateInput($data->config));
+                        die;
+                    break;
+                    case 'Profile':
+                        $data->config = $this->configCheck($data);
+                        echo json_encode($this->validateInput($data->config));
+                        die;
+                    break;
                 }
             }
         }
     }
 
-    private function configLogin($input)
+    private function configCheck($input)
     {
         $cnf = json_decode(ConfigurationCheck::index($input));
         if(!empty($cnf))
         {
             unset($input->action);
             unset($input->params->projectId);
+            if(isset($input->params->user)){
+                unset($input->params->user);
+            }
             $data = new stdClass();
             $data->find = $input->params;
             $data->cnf = $cnf;
-
             return $data;
         }
         return false;
